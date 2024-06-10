@@ -51,3 +51,4 @@ document.getElementById('prev-button').addEventListener('click', function () {
 window.onload = function () {
     loadPlayer(soundcloudUrls[currentIndex]);
 };
+
