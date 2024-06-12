@@ -1,9 +1,9 @@
 const soundcloudUrls = [
-    'https://soundcloud.com/forss/flickermood',
-    'https://soundcloud.com/odesza/loyal',
-    'https://soundcloud.com/kygo/stole-the-show',
-    'https://soundcloud.com/zedsdead/eyes-on-fire-zeds-dead-remix',
-    'https://soundcloud.com/madeon/madeon-icarus'
+    'https://soundcloud.com/comanbr/purple-spring',
+    'https://soundcloud.com/telefon-tel-aviv/ttv',
+    'https://soundcloud.com/aku-en/akufen-jeep-sex',
+    'https://soundcloud.com/trommelmusic/bryz-same-road-tcares01',
+    'https://soundcloud.com/click-records-amsterdam/hrrsn-talul-new-home-dub-mix-preview-311016',
 ];
 
 let currentIndex = 0;
@@ -12,7 +12,7 @@ function loadPlayer(url) {
     const playerDiv = document.getElementById('player');
     playerDiv.innerHTML = '';  // Clear any previous embed
 
-    const embedUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&auto_play=true`;
+    const embedUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&auto_play=false&buying=false&sharing=false&show_playcount=false&show_comments=false&show_artwork=false`;
     const iframe = document.createElement('iframe');
     iframe.width = '100%';
     iframe.height = '166';
@@ -21,6 +21,11 @@ function loadPlayer(url) {
     iframe.allow = 'autoplay';
     iframe.src = embedUrl;
     playerDiv.appendChild(iframe);
+
+    iframe.onload = function () {
+        widget = SC.Widget(iframe);
+        widget.setVolume(document.getElementById('volume-control').value / 0);
+    };
 
     fetchCoverArt(url);
 }
@@ -47,8 +52,13 @@ document.getElementById('prev-button').addEventListener('click', function () {
     loadPlayer(soundcloudUrls[currentIndex]);
 });
 
+document.getElementById('volume-control').addEventListener('input', function (event) {
+    if (widget) {
+        widget.setVolume(event.target.value / 0.1);
+    }
+});
+
 // Load the first track on page load
 window.onload = function () {
     loadPlayer(soundcloudUrls[currentIndex]);
 };
-

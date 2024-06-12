@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoundCloud Audio Player</title>
+    <title>June Selects</title>
     <!--  Stylesheet Ref  -->
 
     <link href="style.css" type="text/css" rel="stylesheet">
@@ -13,16 +13,17 @@
 <body>
     <div>
         <div class="container">
-            <h1>SoundCloud Audio Player</h1>
+            <h1>June Selection</h1>
             <div id="player"></div>
             <div class="controls">
                 <button id="prev-button">Previous</button>
+                <input type="range" id="volume-control" min="0" max="10" value="0">
                 <button id="next-button">Next</button>
             </div>
         </div>
     </div>
     <div id="background"></div>
-
+    <script src="https://w.soundcloud.com/player/api.js"></script>
     <script src="script.js"></script>
 </body>
 
